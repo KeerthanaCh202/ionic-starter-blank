@@ -25,3 +25,19 @@
 #container a {
   text-decoration: none;
 }
+
+#container {
+  .result-list {
+    border: 5px solid red;
+  }
+
+  .item-label {
+    font-weight: bold;
+    color: blue;
+  }
+
+  .item-date {
+    font-style: italic;
+    color: blue;
+  }
+}

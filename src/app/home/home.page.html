@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
+    <ion-title class="h1">
+      Sample App with ion-datetime component
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,33 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large" class="h1">
+        Sample App with ion-datetime component
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <form (submit)="onSubmit($event)">
+      <ion-item>
+        <ion-input [value]="selectedDate | date: 'mediumDate'" placeholder="Select Date" readonly
+          (click)="openDateTimePicker()"></ion-input>
+      </ion-item>
+      <ion-button type="submit" expand="block">Submit</ion-button>
+    </form>
+
+    <ion-list *ngIf="submitted" class="result-list">
+      <ion-item *ngFor="let item of dateList">
+        <ion-label class="item-label">{{ item.label }}:</ion-label>
+        <span class="item-date">{{ item.date }}</span>
+      </ion-item>
+    </ion-list>
+
+    <ion-modal [isOpen]="isDatePickerOpen" (didDismiss)="closeDateTimePicker()">
+      <ng-template>
+        <ion-datetime [min]="minDate" [max]="maxDate" presentation="date"
+          (ionChange)="onDateChange($event)"></ion-datetime>
+      </ng-template>
+    </ion-modal>
   </div>
 </ion-content>
